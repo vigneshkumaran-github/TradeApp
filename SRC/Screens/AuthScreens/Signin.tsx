@@ -27,7 +27,7 @@ const Signin = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={val => {
-        navigation.navigate('');
+        // navigation.navigate('');
       }}
       validationSchema={SigninSchema}>
       {({values, errors, touched, handleChange, setFieldTouched, handleSubmit}) => (
@@ -61,8 +61,8 @@ const Signin = () => {
               placeholder={'Password'}
               value={values.password}
               onChangeText={handleChange('password')}
-              touched={touched?.email}
-              error={errors?.email}
+              touched={touched?.password}
+              error={errors?.password}
               submit={submit}
               onFocus={() => {
                 setFieldTouched('password');

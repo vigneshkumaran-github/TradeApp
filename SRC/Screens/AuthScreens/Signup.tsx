@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Formik} from 'formik';
 import {SigninSchema, SignupSchema} from './FormicSchema';
 import {colors, fontfamily} from '../../Constants/DesignConstants';
@@ -27,6 +27,7 @@ const Signup = () => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [submit, setSubmit] = useState(false);
   const navigation = useNavigation();
+  const formicref=useRef()
   return (
     <Formik
       initialValues={initialValues}
@@ -38,7 +39,7 @@ const Signup = () => {
         }
       }}
       validationSchema={SignupSchema}>
-      {({values, errors, touched, handleChange, setFieldTouched, handleSubmit}) => (
+      {({values, errors, touched, handleChange, setFieldTouched, handleSubmit,resetForm}) => (
         <View style={styles.container}>
           {/* Back Btn */}
           <CustomBackBtn />
@@ -122,6 +123,7 @@ const Signup = () => {
               onPress={() => {
                 setSubmit(true);
                 handleSubmit();
+                resetForm()
               }}
             />
 
