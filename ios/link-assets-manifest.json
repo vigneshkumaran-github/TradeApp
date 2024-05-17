@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/EudoxusSans-Bold.ttf",
+      "sha1": "a2fa2d03e581b0f59a7c68692ca479e8cb326dd0"
+    },
+    {
+      "path": "assets/fonts/EudoxusSans-ExtraBold.ttf",
+      "sha1": "66ed45040973a7bbde604e7f1e3e76b59737de78"
+    },
+    {
+      "path": "assets/fonts/EudoxusSans-Light.ttf",
+      "sha1": "d2f7b9099fcffd4a8cffb49e02ee150b65f0467f"
+    },
+    {
+      "path": "assets/fonts/EudoxusSans-Medium.ttf",
+      "sha1": "a0f565612395d2c298d6bd5c40705fd661fbd311"
+    },
+    {
+      "path": "assets/fonts/EudoxusSans-Regular.ttf",
+      "sha1": "81259038e37ba427c14927296d354208d8c4cbbf"
+    }
+  ]
+}
