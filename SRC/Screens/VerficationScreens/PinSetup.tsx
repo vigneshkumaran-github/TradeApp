@@ -5,25 +5,28 @@ import CustomBackBtn from '../../CustomComponents/CustomBackBtn';
 import {responsiveHeight, responsiveWidth} from 'react-native-responsive-dimensions';
 import {RFValue} from 'react-native-responsive-fontsize';
 import {useNavigation} from '@react-navigation/native';
+import NumberPad from '../../CustomComponents/NumberPad';
 
 const PinSetup = () => {
   const data = [1, 2, 3, 4];
   const [value, setValue] = useState('');
   const navigation = useNavigation();
+  const [val, setVal] = useState(0);
 
-    useEffect(() => {
-      const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-        // Returning true will prevent the default back button behavior
-       
-        return true;
-      });
-      // Cleanup the event listener on component unmount
-      return () => backHandler.remove();
-    }, []);
+  const onNumberPress = () => {
+    if (val === 3) {
+      setVal(0);
+      navigation.navigate('PasswordRecoverPhone');
+    } else {
+      setVal(val + 1);
+    }
+  };
 
- 
- 
-  
+  const onDeletePress = () => {
+    if (val !== 0) {
+      setVal(val - 1);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -38,7 +41,7 @@ const PinSetup = () => {
 
       <View style={styles.circleContainer}>
         {data?.map((item, index) => (
-          <View key={index} style={[styles.circle, {backgroundColor: value?.length - 1 >= index ? colors.primarycolor : colors.primarycolorlight}]} />
+          <View key={index} style={[styles.circle, {backgroundColor: val - 1 >= index ? colors.primarycolor : colors.primarycolorlight}]} />
         ))}
       </View>
 
@@ -46,16 +49,17 @@ const PinSetup = () => {
         onChangeText={val => {
           setValue(val);
           if (val.length === 4) {
-            navigation.navigate('PasswordRecoverPhone')
+            navigation.navigate('PasswordRecoverPhone');
           }
         }}
         value={value}
-        focusable
+        // focusable
         blurOnSubmit={false}
-        autoFocus
+        // autoFocus
         inputMode="numeric"
         style={{opacity: 0, position: 'absolute', width: 0, height: 0}}
       />
+      <NumberPad onPressHandler={onNumberPress} onDeletePress={onDeletePress} />
     </View>
   );
 };

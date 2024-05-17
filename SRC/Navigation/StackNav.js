@@ -14,6 +14,7 @@ import PinSetup from "../Screens/VerficationScreens/PinSetup";
 import PasswordRecoverPhone from "../Screens/PasswordRecovery/PasswordRecoverPhone";
 import PasswordRecoverEmail from "../Screens/PasswordRecovery/PasswordRecoverEmail";
 import PasswordRecoverOtp from "../Screens/PasswordRecovery/PasswordRecoverOtp";
+import CameraScreen from "../Screens/VerficationScreens/CameraScreen";
 
 
 const StackConfig = {headerShown: false,statusBarColor:colors.backgroundcolor,statusBarStyle:'dark'};
@@ -35,6 +36,7 @@ export function AuthStackScreen() {
         <AuthStack.Screen name="PasswordRecoverPhone" component={PasswordRecoverPhone} />
         <AuthStack.Screen name="PasswordRecoverEmail" component={PasswordRecoverEmail} />
         <AuthStack.Screen name="PasswordRecoverOtp" component={PasswordRecoverOtp} />
+        <AuthStack.Screen name="CameraScreen" component={CameraScreen} />
       </AuthStack.Navigator>
     );
   } 

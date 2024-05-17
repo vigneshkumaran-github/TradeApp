@@ -32,40 +32,14 @@ const Signin = () => {
       validationSchema={SigninSchema}>
       {({values, errors, touched, handleChange, setFieldTouched, handleSubmit}) => (
         <View style={styles.container}>
+          {/* Back Button */}
           <CustomBackBtn />
-          <AuthHeader text1={'Let’s Sign You In'} text2={'Welcome back, you’ve been missed!'} />
-          <View style={{marginTop: responsiveHeight(3), width: responsiveWidth(90), alignSelf: 'center'}}>
-            {/* <View
-              style={[
-                styles.inputContainer,
-                {
-                  borderColor: touched.email ? colors.primarycolor : colors.boxGray,
-                },
-              ]}>
-              <TextInput
-                inputMode={'text'}
-                placeholderTextColor={colors.textGray}
-                placeholder={'Email Address'}
-                numberOfLines={1}
-                value={values.email}
-                onChangeText={handleChange('email')}
-                editable
-                onFocus={() => {
-                  setFieldTouched('email');
-                }}
-                onBlur={() => {
-                  setFieldTouched('email');
-                }}
-                style={styles.input}
-              />
-              {touched.email && (
-                <View style={styles.label}>
-                  <Text style={styles.pinktext}>Email Address</Text>
-                </View>
-              )}
-            </View>
-            {errors.email && submit && <Text style={styles.redtext}>{errors.email + ' '}!</Text>} */}
 
+          {/* Header Section */}
+          <AuthHeader text1={'Let’s Sign You In'} text2={'Welcome back, you’ve been missed!'} />
+
+          {/* Input Fields */}
+          <View style={{marginTop: responsiveHeight(3), width: responsiveWidth(90), alignSelf: 'center'}}>
             <CustomInput
               inputMode={'text'}
               placeholder={'Email Address'}
@@ -102,62 +76,15 @@ const Signin = () => {
               forgot={true}
               setViewPass={setViewPass}
             />
-
-            {/* <View
-              style={[
-                styles.inputContainer,
-                {
-                  borderColor: touched.password ? colors.primarycolor : colors.boxGray,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                },
-              ]}>
-              <TextInput
-                inputMode={'text'}
-                placeholderTextColor={colors.textGray}
-                placeholder={'Password'}
-                secureTextEntry={viewPass}
-                numberOfLines={1}
-                value={values.password}
-                onChangeText={handleChange('password')}
-                editable
-                onFocus={() => {
-                  setFieldTouched('password');
-                }}
-                onBlur={() => {
-                  setFieldTouched('password');
-                }}
-                style={[styles.input, {width: responsiveScreenWidth(55)}]}
-              />
-
-              <TouchableOpacity>
-                <Text style={styles.pinktext2}>Forgot ?</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => {
-                  setViewPass(!viewPass);
-                }}>
-                <SvgXml xml={viewPass ? eyesvg : eyesvg2} width={responsiveHeight(4)} height={responsiveWidth(6)} />
-              </TouchableOpacity>
-
-              {touched.password && (
-                <View style={styles.label}>
-                  <Text style={styles.pinktext}>Password</Text>
-                </View>
-              )}
-            </View>
-            {errors.password && submit && <Text style={styles.redtext}>{errors.password + ' '}!</Text>} */}
           </View>
 
+          {/* Button Containers */}
           <View style={styles.bottomContainer}>
             <CustomButton
               title={'Login'}
               onPress={() => {
                 setSubmit(true);
-                handleSubmit()
-                // setFieldTouched('');
+                handleSubmit();
               }}
             />
 

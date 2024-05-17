@@ -13,6 +13,7 @@ import CustomButton from '../../CustomComponents/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import CheckBox from '@react-native-community/checkbox';
 import CustomInput from '../../CustomComponents/CustomInput';
+import {showToastRed} from '../../HelperFunctions/Helper';
 
 interface MyFormValues {
   fullname: string;
@@ -30,7 +31,11 @@ const Signup = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={val => {
-        navigation.navigate('SecureAccount');
+        if (toggleCheckBox) {
+          navigation.navigate('SecureAccount');
+        } else {
+          showToastRed('Please accept our Terms of Service');
+        }
       }}
       validationSchema={SignupSchema}>
       {({values, errors, touched, handleChange, setFieldTouched, handleSubmit}) => (
@@ -43,110 +48,6 @@ const Signup = () => {
 
           {/* Input Fields */}
           <View style={{marginTop: responsiveHeight(3), width: responsiveWidth(90), alignSelf: 'center'}}>
-            {/* <View
-              style={[
-                styles.inputContainer,
-                {
-                  borderColor: touched.fullname ? colors.primarycolor : colors.boxGray,
-                },
-              ]}>
-              <TextInput
-                inputMode={'text'}
-                placeholderTextColor={colors.textGray}
-                placeholder={'Full Name'}
-                numberOfLines={1}
-                value={values.fullname}
-                onChangeText={handleChange('fullname')}
-                editable
-                onFocus={() => {
-                  setFieldTouched('fullname');
-                }}
-                onBlur={() => {
-                  setFieldTouched('fullname');
-                }}
-                style={styles.input}
-              />
-              {touched.fullname && (
-                <View style={styles.label}>
-                  <Text style={styles.pinktext}>Fullname</Text>
-                </View>
-              )}
-            </View>
-            {errors.fullname && submit && <Text style={styles.redtext}>{errors.fullname + ' '}!</Text>} */}
-
-            {/* <View
-              style={[
-                styles.inputContainer,
-                {
-                  borderColor: touched.email ? colors.primarycolor : colors.boxGray,
-                },
-              ]}>
-              <TextInput
-                inputMode={'text'}
-                placeholderTextColor={colors.textGray}
-                placeholder={'Email Address'}
-                numberOfLines={1}
-                value={values.email}
-                onChangeText={handleChange('email')}
-                editable
-                onFocus={() => {
-                  setFieldTouched('email');
-                }}
-                onBlur={() => {
-                  setFieldTouched('email');
-                }}
-                style={styles.input}
-              />
-              {touched.email && (
-                <View style={styles.label}>
-                  <Text style={styles.pinktext}>Email Address</Text>
-                </View>
-              )}
-            </View>
-            {errors.email && submit && <Text style={styles.redtext}>{errors.email + ' '}!</Text>} */}
-
-            {/* <View
-              style={[
-                styles.inputContainer,
-                {
-                  borderColor: touched.password ? colors.primarycolor : colors.boxGray,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                },
-              ]}>
-              <TextInput
-                inputMode={'text'}
-                placeholderTextColor={colors.textGray}
-                placeholder={'Password'}
-                secureTextEntry={viewPass}
-                numberOfLines={1}
-                value={values.password}
-                onChangeText={handleChange('password')}
-                editable
-                onFocus={() => {
-                  setFieldTouched('password');
-                }}
-                onBlur={() => {
-                  setFieldTouched('password');
-                }}
-                style={[styles.input, {width: responsiveScreenWidth(55)}]}
-              />
-              <TouchableOpacity
-                onPress={() => {
-                  setViewPass(!viewPass);
-                }}>
-                <SvgXml xml={viewPass ? eyesvg : eyesvg2} width={responsiveHeight(4)} height={responsiveWidth(6)} />
-              </TouchableOpacity>
-
-              {touched.password && (
-                <View style={styles.label}>
-                  <Text style={styles.pinktext}>Password</Text>
-                </View>
-              )}
-            </View>
-            {errors.password && submit && <Text style={styles.redtext}>{errors.password + ' '}!</Text>} */}
-
             <CustomInput
               inputMode={'text'}
               placeholder={'FullName'}

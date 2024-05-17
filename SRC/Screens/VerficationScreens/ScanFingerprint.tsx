@@ -6,9 +6,33 @@ import {responsiveHeight, responsiveWidth} from 'react-native-responsive-dimensi
 import {RFValue} from 'react-native-responsive-fontsize';
 import CustomButton from '../../CustomComponents/CustomButton';
 import {useNavigation} from '@react-navigation/native';
+import ReactNativeBiometrics, {BiometryTypes} from 'react-native-biometrics';
 
 const ScanFingerprint = () => {
   const navigation = useNavigation();
+
+  const key =
+    'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4iV2yUL6x4T4i2qfz7z56122JGMntgT6U+0xpqqkY8PiFSwLkSWoe39Ix1TEze1D5qB7/tX2th2wBT5yEIVXVH3+jFo4BKCHOp1NbQOP5z4fo7eD8CGZ8HOnnAwJfuj5qFESk2u7W1BP84Yk9jNDVQluFKUpQA/EQr2EqMe6ENfi2GN8MehTvZt4IhUbZaX81iTy/kftQyBAfET2vBRX2KkTykSpxo6apRk//gm7PtHEh2qwYpss1QfGAXSVqBiWXozGsZ/yPj2/2+hGVrA2YMZl8mlneA6ERTfKFWKMQl0MsWalLEWbRPVxBA4SUlGwH1vGbu1sjBNs5fh9lwTtNQIDAQAB';
+
+  const rnBiometrics = new ReactNativeBiometrics({allowDeviceCredentials: true});
+
+  const onTouch = async () => {
+    const {biometryType} = await rnBiometrics.isSensorAvailable();
+
+    
+    if (biometryType === BiometryTypes.Biometrics) {
+      const {success} = await rnBiometrics.simplePrompt({
+        promptMessage: 'Place Your Finger',
+      });
+
+      if (success) {
+        await rnBiometrics.createKeys().then(key => {
+          navigation.navigate('PinSetup');
+        });
+      }
+    }
+  };
+
   return (
     <View style={styles.container}>
       <CustomBackBtn />
@@ -16,12 +40,14 @@ const ScanFingerprint = () => {
       <View style={styles.subContainer}>
         <Text style={styles.text1}>Setup Face ID</Text>
         <Text style={styles.text2}>You can use face authentication to login into Tradebase</Text>
-        <TouchableOpacity onPress={()=>{navigation.navigate('PinSetup')}}>
+        <TouchableOpacity
+          onPress={() => {
+            onTouch();
+          }}>
           <Image source={require('../../Resources/Images/fingerprint.png')} resizeMode="contain" style={styles.image} />
         </TouchableOpacity>
         <Text style={[styles.text2, {fontFamily: fontfamily.fontLight, marginTop: 0}]}>Please lift and rest your finger</Text>
       </View>
-     
     </View>
   );
 };
