@@ -15,10 +15,13 @@ import PasswordRecoverPhone from "../Screens/PasswordRecovery/PasswordRecoverPho
 import PasswordRecoverEmail from "../Screens/PasswordRecovery/PasswordRecoverEmail";
 import PasswordRecoverOtp from "../Screens/PasswordRecovery/PasswordRecoverOtp";
 import CameraScreen from "../Screens/VerficationScreens/CameraScreen";
+import TabNav from "./TabNavigation/TabNav";
 
 
 const StackConfig = {headerShown: false,statusBarColor:colors.backgroundcolor,statusBarStyle:'dark'};
+const StackConfig2= {headerShown: false,statusBarColor:colors.white,statusBarStyle:'dark'};
 const AuthStack = createNativeStackNavigator();
+const Homestack = createNativeStackNavigator();
 
 export function AuthStackScreen() {
     return (
@@ -37,6 +40,15 @@ export function AuthStackScreen() {
         <AuthStack.Screen name="PasswordRecoverEmail" component={PasswordRecoverEmail} />
         <AuthStack.Screen name="PasswordRecoverOtp" component={PasswordRecoverOtp} />
         <AuthStack.Screen name="CameraScreen" component={CameraScreen} />
+        <Homestack.Screen name="TabNav" component={TabNav} />
       </AuthStack.Navigator>
+    );
+  } 
+
+  export function HomeStackScreen() {
+    return (
+      <Homestack.Navigator screenOptions={StackConfig2} initialRouteName="TabNav">
+        <Homestack.Screen name="TabNav" component={TabNav} />
+      </Homestack.Navigator>
     );
   } 

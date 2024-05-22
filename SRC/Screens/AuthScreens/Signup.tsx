@@ -123,7 +123,7 @@ const Signup = () => {
               onPress={() => {
                 setSubmit(true);
                 handleSubmit();
-                resetForm()
+                // resetForm()
               }}
             />
 

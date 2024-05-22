@@ -43,7 +43,7 @@ const CameraScreen = props => {
       capturePhoto();
       // props?.setShowCamera(false);
       // navigation.navigate('ScanFingerprint')
-    }, 4000);
+    }, 2000);
     return () => clearTimeout(timoeout);
   }, []);
 

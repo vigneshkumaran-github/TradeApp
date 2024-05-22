@@ -8,6 +8,7 @@ export const colors = {
   lightBlue:'#1DCC98',
   extralightBlue:'#8EE5CB',
   skybluelight:'#A5A6F6',
+  blue:'#1D82CC',
   yellow: '#FEFFB5',
   yellow1: '#FAFF00',
   brown: '#9D0000',

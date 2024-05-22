@@ -22,7 +22,7 @@ const PasswordRecoverEmail = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={val => {
-        // navigation.navigate('PasswordRecoverOtp');
+        navigation.navigate('TabNav');
       }}
       validationSchema={EmailSchema}>
       {({values, errors, touched, handleChange, setFieldTouched, handleSubmit}) => (
